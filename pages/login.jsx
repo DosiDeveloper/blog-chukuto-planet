@@ -18,3 +18,5 @@ export default function Login() {
     </AuthCard>
   );
 }
+
+// to do: make onClick object, dont ref another page (more pretty)
