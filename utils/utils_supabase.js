@@ -1,7 +1,7 @@
 import supabase from "./init_supabase";
 
 export async function getSupabase(target, select) {
-    const { error } = await supabase
+    return await supabase
         .from(target)
         .select(select)
 
@@ -9,7 +9,7 @@ export async function getSupabase(target, select) {
 }
 
 export async function postSupabase(target, json) {
-    const { error } = await supabase
+    return await supabase
         .from(target)
         .insert(json)
 
@@ -17,7 +17,7 @@ export async function postSupabase(target, json) {
 }
 
 export async function updateSupabase(target, json, filter) {
-    const { error } = await supabase
+    return await supabase
         .from(target)
         .update(json)
         .eq(filter)
@@ -26,14 +26,14 @@ export async function updateSupabase(target, json, filter) {
 }
 
 export async function upsertSupabase(target, json, select) {
-    const { data, error } = await supabase
+    return await supabase
         .from(target)
         .upsert(json)
         .select(select)
 }
 
 export async function deleteSupabase(target, filter) {
-    const { error } = await supabase
+    return await supabase
         .from(target)
         .delete()
         .eq(filter)
