@@ -24,18 +24,20 @@ export function Post_miniature({ title }) {
   );
 }
 
-export function Post({ post_name }) {
+export function Post({ post }) {
   const [isLoading, setIsLoading] = useState(true);
   const [postContent, setPostContent] = useState(null);
+
+  // NO TOCAR CACA 
   useEffect(() => {
-    if (!post_name) {
+    if (!post) {
       const obj = { metadata: { title: "error" }, content: "error" };
       const blob = new Blob([JSON.stringify(obj, null, 2)], {
         type: "application/octet-stream",
       });
       setPostContent(blob);
     } else {
-      downloadMarkdownPost(post_name)
+      downloadMarkdownPost(post.attachment)
         .then((data) => {
           data.text().then((text) => {
             setPostContent(getMetadataPost(text));
@@ -44,7 +46,7 @@ export function Post({ post_name }) {
         })
         .catch((error) => console.error(error));
     }
-  }, [post_name]);
+  }, [post]);
 
   if (isLoading) return <p>Loading ...</p>;
 

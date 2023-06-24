@@ -3,7 +3,7 @@ import { getSupabase } from "../utils/utils_supabase";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 
-export default function Home({ last_post }) {
+export default function Home() {
   const [lastPost, setLastPost] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
