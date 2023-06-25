@@ -18,13 +18,17 @@ Both will be written in English and Spanish. In order to fulfill the English ass
 ## Getting Started
 Remember to be connected to the internet for it to work.
 
-First, run the development server:
+
+First, install all dependencies:
+```bash
+npm install
+# or 
+npm i
+```
+
+Second, run the development server:
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
