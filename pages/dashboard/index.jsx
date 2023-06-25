@@ -1,7 +1,9 @@
+import "../../components/editor";
+
 export default function Dashboard() {
   return (
-    <div>
-      <h1>Hello welcome to the dashboard</h1>
-    </div>
+    <body>
+      <div id="editor"></div>
+    </body>
   );
 }
