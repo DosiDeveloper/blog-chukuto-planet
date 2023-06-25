@@ -1,16 +1,14 @@
 import { Post_miniature } from "../components/post";
-import supabase from "../utils/init_supabase";
+import { getSupabase } from "../utils/utils_supabase";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 
-export default function Home({ last_post }) {
+export default function Home() {
   const [lastPost, setLastPost] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    supabase
-      .from("post")
-      .select("*")
+    getSupabase("post", "*")
       .then((data) => {
         setLastPost(data.data)
         setIsLoading(false);
@@ -32,7 +30,7 @@ export default function Home({ last_post }) {
             <h1>Loading ...</h1>
           ) : (
             lastPost.map((post) => {
-              return <Post_miniature key={post.id} name={post.name} />;
+              return <Post_miniature key={post.id} name={post.title} />;
             })
           )}
         </div>

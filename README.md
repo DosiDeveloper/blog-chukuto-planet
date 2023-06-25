@@ -1,8 +1,10 @@
 # The blog of FL11211-C2
 
-The blog will be divided by two sections:
+The blog will be divided into the following sections, based on the Curricular Units that require it:
 - Computer Architecture
 - Math
+- Englih
+- Socio-technological Project
 
 Both will be written in English and Spanish. In order to fulfill the English assignment it will be possible switch between the two languages.  
 
@@ -14,9 +16,9 @@ Both will be written in English and Spanish. In order to fulfill the English ass
 - - remark-gfm [Learn more](https://github.com/remarkjs/remark-gfm)
 
 ## Getting Started
+Remember to be connected to the internet for it to work.
 
 First, run the development server:
-
 ```bash
 npm run dev
 # or
