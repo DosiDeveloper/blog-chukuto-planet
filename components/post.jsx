@@ -1,10 +1,9 @@
-import Image from "next/image";
-import Link from "next/link";
 import { downloadMarkdownPost, getMetadataPost } from "../utils/utils";
 import { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Head from "next/head";
+
 
 export function Post_miniature({ title }) {
   return (
@@ -46,7 +45,8 @@ export function Post({ post_name }) {
     }
   }, [post_name]);
 
-  if (isLoading) return <p>Loading ...</p>;
+  if (isLoading)
+    return <p>Loading ...</p>;
 
   return (
     <>

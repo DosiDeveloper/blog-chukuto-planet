@@ -1,12 +1,13 @@
-import Navbar from "./navbar";
+import { Container } from "@mui/material";
+import Navbar from "./Navbar";
 
 export default function Layout({ children }) {
   return (
     <>
       <Navbar />
-      <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <Container component="main">
         {children}
-      </main>
+      </Container>
     </>
   );
 }
