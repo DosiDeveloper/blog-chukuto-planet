@@ -1,5 +1,6 @@
 import matter from "gray-matter";
 import supabase from "./init_supabase";
+// NO TOCAR EsTA VAINA O si NO LEs PEGO by douglas
 
 /**
  *
@@ -11,8 +12,7 @@ export async function downloadMarkdownPost(path) {
     const { data, error } = await supabase.storage
       .from("blog_storage")
       .download(`post/${path}.md`);
-
-    console.debug(`path: ${path}`, `data: ${data}`, `error: ${error}`);
+    
     if (error) {
       throw error;
     }
