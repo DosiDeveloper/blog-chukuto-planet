@@ -2,39 +2,69 @@ import { Post_miniature } from "../components/post";
 import { getSupabase } from "../utils/utils_supabase";
 import Head from "next/head";
 import { useEffect, useState } from "react";
+import About from "../components/about";
+import Slider from "../components/slider";
+
+const data = [
+  {
+    title: "lorem ipsum titulo",
+    description: "una description sencilla",
+    url: "https://imgur.com/LbBqmJ9",
+  },
+  {
+    title: "lorem ipsum titulo2",
+    description: "una description sencilla",
+    url: "https://imgur.com/dM0QAEA",
+  },
+  {
+    title: "lorem ipsum titulo3",
+    description: "una description sencilla",
+    url: "http:///localhost:3000/favicon.ico",
+  },
+  {
+    title: "lorem ipsum titulo4",
+    description: "una description sencilla",
+    url: "https://images.pexels.com/photos/16159464/pexels-photo-16159464/free-photo-of-edificio-cielo-azul-urbano-pueblo.jpeg?auto=compress&cs=tinysrgb&w=400&lazy=load",
+  },
+  {
+    title: "lorem ipsum titulo5",
+    description: "una description sencilla",
+    url: "https://images.pexels.com/photos/15109908/pexels-photo-15109908/free-photo-of-flores-insecto-mariposa-floracion.jpeg?auto=compress&cs=tinysrgb&w=400&lazy=load",
+  },
+  {
+    title: "lorem ipsum titulo6",
+    description: "una description sencilla",
+    url: "https://images.pexels.com/photos/15857477/pexels-photo-15857477/free-photo-of-tunel-pavimento-interior-vacio.jpeg?auto=compress&cs=tinysrgb&w=400&lazy=load",
+  },
+];
 
 export default function Home() {
   const [lastPost, setLastPost] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    getSupabase("post", "*")
+    getSupabase("posts", "*")
       .then((data) => {
-        setLastPost(data.data)
+        setLastPost(data.data);
         setIsLoading(false);
       })
       .catch((error) => console.error(error));
-  });
+  }, []);
 
   return (
     <>
       <Head>
-        <title>Name post Here</title>
+        <title>Chukuto Planet</title>
       </Head>
-      <section className="flex flex-col place-items-center content-center bg-slate-700 h-screen w-4/5 lg:w-4/6 rounded-md p-3">
-        <h1 className="text-xl font-bold capitalize p-2 mx-auto">
-          The Lasted Blog posted
-        </h1>
-        <div className="grid md:grid-cols-2 gap-2 place-items-center content-center h-full">
-          {isLoading ? (
-            <h1>Loading ...</h1>
+      {/* {isLoading ? (
+            <h1>Loading...</h1>
           ) : (
-            lastPost.map((post) => {
-              return <Post_miniature key={post.id} name={post.title} />;
+            lastPost.map(post => {
+              return <Post_miniature key={post.id} title={post.title} />;
             })
-          )}
-        </div>
-      </section>
+          )} */}
+      <Slider data={data} />
+      <About />
     </>
   );
 }

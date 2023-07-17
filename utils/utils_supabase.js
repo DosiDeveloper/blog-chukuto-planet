@@ -12,20 +12,20 @@ export async function getSupabase(target, select) {
   try {
     return await supabase.from(target).select(select);
   } catch (error) {
-    return error
+    return error;
   }
-
 }
+
 /**
-* this function get a single post by its title 
-* @param {string} title title
-* @returns post
-*/
-export async function getPostByTitleSupabase(title) {
+ * this function get a single post by its title
+ * @param {string} title title
+ * @returns post
+ */
+export async function getPostByTitleSupabase(title, select = "*") {
   try {
-    return await supabase.from("posts").select().eq("title", title).single();
+    return await supabase.from("posts").select(select).eq("title", title).single();
   } catch (error) {
-    return error
+    return error;
   }
 }
 
@@ -34,11 +34,11 @@ export async function getPostByTitleSupabase(title) {
  * This function download the post get by post url
  * @param {String} post_url
  * @returns Blob with post
-*/
+ */
 export async function getPostSupabase(post_url) {
   try {
     return await supabase.storage.from("blog_storage").download(post_url);
   } catch (error) {
-    return error
+    return error;
   }
 }
