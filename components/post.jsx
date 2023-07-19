@@ -1,10 +1,8 @@
-import { downloadMarkdownPost, getMetadataPost } from "../utils/utils";
+import { getMetadataPost } from "../utils/utils";
 import { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Head from "next/head";
-import { loaderImageFromSupabase } from "../utils/loaderImageFromSupabase";
-
 
 export function Post_miniature({ title }) {
   return (
