@@ -1,11 +1,21 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { useUser } from "@supabase/auth-helpers-react";
+import supabase from "../utils/init_supabase";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
   const [isMobileMenuVisible, SetIsMobileMenuVisible] = useState(false);
+  const router = useRouter();
+  const user = useUser();
 
   const toggleMobileMenu = () => {
     SetIsMobileMenuVisible(!isMobileMenuVisible);
+  };
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+    router?.refresh();
   };
 
   useEffect(() => {
@@ -42,8 +52,19 @@ export default function Navbar() {
         <li className="menu__item">
           <Link href="/posts">Posts</Link>
         </li>
+        {user ? (
+          <li className="menu__item">
+            <Link href="/homeworks">Homework</Link>
+          </li>
+        ) : (
+          ""
+        )}
         <li className="menu__item">
-          <Link href="/homeworks">Homework</Link>
+          {!user ? (
+            <Link href="/login">Login</Link>
+          ) : (
+            <button onClick={handleSignOut}>Sign out</button>
+          )}
         </li>
       </ul>
     </nav>
