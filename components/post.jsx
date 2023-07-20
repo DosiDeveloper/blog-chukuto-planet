@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Head from "next/head";
+import Image from "next/image";
+import Link from "next/link";
 
 export function Post_miniature({ title }) {
   return (
@@ -44,7 +46,7 @@ export function Post({ post }) {
         metadata,
       });
     }
-  }, []);
+  }, [post]);
 
   if (isLoading)
     return <p>Loading ...</p>;
