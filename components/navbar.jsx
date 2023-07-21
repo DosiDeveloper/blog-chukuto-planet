@@ -14,7 +14,7 @@ export default function Navbar() {
   const toggleMobileMenu = () => {
     SetIsMobileMenuVisible(!isMobileMenuVisible);
   };
-  
+  // mrk el que lo lea
   const handleSignOut = async () => {
     await supabase.auth.signOut();
   };
