@@ -2,14 +2,8 @@ import { createBrowserSupabaseClient } from "@supabase/auth-helpers-nextjs";
 import Head from "next/head";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { useForm } from "react-hook-form";
 
 export default function Login() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
   const router = useRouter();
   const supabase = createBrowserSupabaseClient();
 
@@ -50,7 +44,7 @@ export default function Login() {
   }, []);
 
   supabase.auth.onAuthStateChange((event, session) => {
-    if(event === "SIGNED_OUT") console.log(event, session);
+    console.log(event, session);
   });
   return (
     <>
@@ -98,6 +92,15 @@ export default function Login() {
             </div>
           </div>
           <input type="submit" className="btn" value="Login" />
+          <input
+            type="submit"
+            value="Log out"
+            className="btn"
+            onClick={async () => {
+              await supabase.auth.signOut();
+              router?.refresh();
+            }}
+          />
         </form>
       </div>
     </>

@@ -1,24 +1,24 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useUser } from "@supabase/auth-helpers-react";
-import supabase from "../utils/init_supabase";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { createBrowserSupabaseClient } from "@supabase/auth-helpers-nextjs";
 
 export default function Navbar() {
   const [isMobileMenuVisible, SetIsMobileMenuVisible] = useState(false);
-  const { handleSubmit, register } = useForm();
+  const { handleSubmit } = useForm();
   const router = useRouter();
   const user = useUser();
-
+  const supabase = createBrowserSupabaseClient()
   const toggleMobileMenu = () => {
     SetIsMobileMenuVisible(!isMobileMenuVisible);
   };
-
+  
   const handleSignOut = async () => {
     await supabase.auth.signOut();
-    router?.refresh();
   };
+
 
   useEffect(() => {
     const iconMobile = document.querySelector(".icon.nav-icon");
@@ -64,9 +64,9 @@ export default function Navbar() {
           {!user ? (
             <Link href="/login">Login</Link>
           ) : (
-            <form onSubmit={handleSubmit(handleSignOut)}>
-              <input type="submit" />
-            </form>
+            <button onClick={handleSignOut}>
+              log out
+            </button>
           )}
         </li>
       </ul>
