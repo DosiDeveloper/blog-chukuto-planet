@@ -3,6 +3,7 @@
 @import "./allhomeworks.css";
 @import "./slider.css";
 @import "./about.css";
+@import "./login.css";
 
 :root {
   /* Falta acomodar la paleta de colores */
@@ -65,14 +66,15 @@ body {
   box-sizing: border-box;
 }
 
-/* Establecer el color de fondo y el color de texto para los encabezados o títulos */
-h1, h2, h3 {
-  color: var(--color-blanco);
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Establecer el color de fondo y el color de texto para los enlaces */
-a {
-  background-color: var(--color-gris-medio);
+/* Establecer el color de fondo y el color de texto para los encabezados o títulos */
+h1, h2, h3 {
   color: var(--color-blanco);
 }
 

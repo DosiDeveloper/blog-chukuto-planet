@@ -3,9 +3,11 @@ import { useState, useEffect } from "react";
 import { useUser } from "@supabase/auth-helpers-react";
 import supabase from "../utils/init_supabase";
 import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
 
 export default function Navbar() {
   const [isMobileMenuVisible, SetIsMobileMenuVisible] = useState(false);
+  const { handleSubmit, register } = useForm();
   const router = useRouter();
   const user = useUser();
 
@@ -30,7 +32,6 @@ export default function Navbar() {
       iconMobile.removeEventListener("click", handleButtonMobile);
     };
   }, []);
-
   return (
     <nav className={`navbar`}>
       <div className="navbar__logo">
@@ -63,7 +64,9 @@ export default function Navbar() {
           {!user ? (
             <Link href="/login">Login</Link>
           ) : (
-            <button onClick={handleSignOut}>Sign out</button>
+            <form onSubmit={handleSubmit(handleSignOut)}>
+              <input type="submit" />
+            </form>
           )}
         </li>
       </ul>
