@@ -2,9 +2,15 @@ import { createBrowserSupabaseClient } from "@supabase/auth-helpers-nextjs";
 import Head from "next/head";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { useForm } from "react-hook-form";
 
 export default function Login() {
   const router = useRouter();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const supabase = createBrowserSupabaseClient();
 
   const handleSignIn = async ({ email, password }) => {
@@ -92,7 +98,7 @@ export default function Login() {
             </div>
           </div>
           <input type="submit" className="btn" value="Login" />
-          <input
+          {/* <input
             type="submit"
             value="Log out"
             className="btn"
@@ -100,7 +106,7 @@ export default function Login() {
               await supabase.auth.signOut();
               router?.refresh();
             }}
-          />
+          /> */}
         </form>
       </div>
     </>

@@ -1,36 +1,21 @@
-import { useState } from "react";
-import { FaSearch } from "react-icons/fa";
-import supabase  from "../utils/init_supabase";
-import "../styles/SearchBar.css";
+import { useState, useEffect } from "react";
+import supabase from "../utils/init_supabase";
 
-export const SearchBar = ({ setResults }) => {
+export default function SearchBar({setResults, results}) {
   const [input, setInput] = useState("");
-
-
-  useEffect(() => {
-    const realtime = supabase
-      .channel("any")
-      .on(
-        "postgres_changes",
-        { event: "*", schema: "public", table: "posts" },
-        (payload) => {
-          console.log("Change received!", payload);
-        }
-      )
-      .subscribe();
-    return () => {
-      supabase.removeChannel(realtime);
-    };
-  });
 
   const handleChange = (value) => {
     setInput(value);
-    supabaseData(value);
   };
+
+  useEffect(()=> {
+    supabase.from("posts").select("*").ilike("title", `%${results}%`).then(({data}) => {
+      setResults(data)
+    })  
+  }, [input])
 
   return (
     <div className="input-wrapper">
-      <FaSearch id="search-icon" />
       <input
         placeholder="Type to search..."
         value={input}
@@ -38,4 +23,4 @@ export const SearchBar = ({ setResults }) => {
       />
     </div>
   );
-};
+}

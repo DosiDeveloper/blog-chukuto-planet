@@ -4,6 +4,11 @@
 @import "./slider.css";
 @import "./about.css";
 @import "./login.css";
+@import "./footer.css";
+@import "./searchBar.css";
+@import "./searchResultsList.css";
+@import "./searchResults.css";
+
 
 :root {
   /* Falta acomodar la paleta de colores */

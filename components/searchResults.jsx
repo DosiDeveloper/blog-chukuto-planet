@@ -1,6 +1,5 @@
-import "..styles/SearchResult.css";
-
-export const SearchResult = ({ result }) => {
+import PostList from "./postlist";
+export default function SearchResult({ result }) {
   return (
     <div
       className="search-result"
@@ -9,4 +8,4 @@ export const SearchResult = ({ result }) => {
       {result}
     </div>
   );
-};
+}

@@ -1,12 +1,15 @@
-import "..styles/SearchResultsList.css";
-import { SearchResult } from "./SearchResult";
+import SearchResult from "./searchResults";
 
-export const SearchResultsList = ({ results }) => {
+export default function SearchResultsList({ results }) {
   return (
     <div className="results-list">
-      {results.map((result, id) => {
-        return <SearchResult result={result.name} key={id} />;
-      })}
+      {results.length > 0
+        ? results.map((result, index) => {
+          console.log(result)
+            return <SearchResult result={result.title} key={index} />;
+          })
+        : <></>}
     </div>
   );
-};
+}
+// te la boca lui

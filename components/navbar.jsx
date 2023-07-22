@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useUser } from "@supabase/auth-helpers-react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { createBrowserSupabaseClient } from "@supabase/auth-helpers-nextjs";
 
@@ -34,9 +34,9 @@ export default function Navbar() {
   }, []);
   return (
     <nav className={`navbar`}>
-      <div className="navbar__logo">
-        <img src="/logo.png" alt="logo" />
-      </div>
+      <a className="navbar__logo" href='/'>
+        <img src="/logo.jpg" alt="logo" />
+      </a>
       <div className="icon nav-icon" onClick={toggleMobileMenu}>
         <span></span>
         <span></span>
@@ -48,24 +48,21 @@ export default function Navbar() {
         }`}
       >
         <li className="menu__item">
-          <Link href="/">Index</Link>
-        </li>
-        <li className="menu__item">
-          <Link href="/posts">Posts</Link>
+          <Link href="/posts">All Posts</Link>
         </li>
         {user ? (
           <li className="menu__item">
-            <Link href="/homeworks">Homework</Link>
+            <Link href="/homeworks">Homeworks</Link>
           </li>
         ) : (
           ""
         )}
-        <li className="menu__item">
+        <li className="menu__item_login">
           {!user ? (
             <Link href="/login">Login</Link>
           ) : (
-            <button onClick={handleSignOut}>
-              log out
+            <button className="menu__item_login" onClick={handleSignOut}>
+              Logout
             </button>
           )}
         </li>
