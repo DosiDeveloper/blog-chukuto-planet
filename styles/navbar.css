@@ -62,40 +62,30 @@
 
 .menu__item:hover a,
 .menu__item:hover button {
-  color: #0099ff;
-  background: #ffffff;
+  color: #084887;
+  background: #D1D1D1;
 }
 
-.menu__item_login {
+.login-img img {
   float: left;
+  height: 50px;
 }
 
-.menu__item_login a,
-.menu__item_login button {
-  color: whitesmoke;
-  text-decoration: none;
-  font-size: 25px;
-  font-weight: 600;
-  transition: all 0.3s ease-in-out;
-  box-sizing: border-box;
-  width: auto;
-  height: auto;
-  padding: 5px;
-  padding: 1rem;
-  border: none;
-  border-radius: 4px;
-  /* background: rgba(184, 184, 184, 0.05);
-  background-size: cover; */
-  /* box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(17.5px); 
-  -webkit-backdrop-filter: blur(17.5px); */
-  border-radius: 10px;
+.hover-login-img img {
+  float: left;
+  height: 50px;
+  opacity: 0;
+  transition: opacity .1s;
 }
 
-.menu__item_login:hover a,
-.menu__item_login:hover button {
-  color: #03c852;
-  background: #ffffff;
+.login-img:hover .hover-login-img {
+  opacity: 1;
+}
+
+.logout-img {
+  cursor: pointer;
+  float: left;
+  height: 50px;
 }
 
 .menu__container {
@@ -187,7 +177,6 @@
     z-index: 999;
     left: 0%;
     top: 0;
-    background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.9);
     overflow-x: hidden;
     align-self: center;

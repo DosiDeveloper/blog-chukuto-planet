@@ -59,7 +59,7 @@
 
 /* Establecer el color de fondo y el color de texto */
 body {
-  background-color: var(--color-negro);
+  background-color: #D3D3D3;
   color: var(--color-blanco);
   margin: 0;
   padding: 0;

@@ -35,7 +35,7 @@ export default function Navbar() {
   return (
     <nav className={`navbar`}>
       <a className="navbar__logo" href='/'>
-        <img src="/logo.jpg" alt="logo" />
+        <img src="/logo.png" alt="logo" />
       </a>
       <div className="icon nav-icon" onClick={toggleMobileMenu}>
         <span></span>
@@ -48,7 +48,7 @@ export default function Navbar() {
         }`}
       >
         <li className="menu__item">
-          <Link href="/posts">All Posts</Link>
+          <Link href="/posts">Latest Posts</Link>
         </li>
         {user ? (
           <li className="menu__item">
@@ -57,13 +57,15 @@ export default function Navbar() {
         ) : (
           ""
         )}
-        <li className="menu__item_login">
+        <li>
           {!user ? (
-            <Link href="/login">Login</Link>
+            <a href="/login" className="login-img">
+              <img src="/login-logo.png"/>
+            </a>
           ) : (
-            <button className="menu__item_login" onClick={handleSignOut}>
-              Logout
-            </button>
+            <div className="logout-img" onClick={handleSignOut}>
+              <img src="/logout-logo.png"/>
+            </div>
           )}
         </li>
       </ul>
