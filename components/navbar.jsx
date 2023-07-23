@@ -35,9 +35,9 @@ export default function Navbar() {
   }, []);
   return (
     <nav className={`navbar`}>
-      <a className="navbar__logo" href='/'>
+      <Link className="navbar__logo" href='/'>
         <img src="/logo.png" alt="logo" />
-      </a>
+      </Link>
       <div className="icon nav-icon" onClick={toggleMobileMenu}>
         <span></span>
         <span></span>
