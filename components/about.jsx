@@ -1,28 +1,34 @@
 import Link from "next/link";
+import { useEffect } from "react";
+import { useState } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import { getMarkdownPost, loadImageFromSupabase } from "../utils/utils";
+import Image from "next/image";
 
-export default function About() {
+export default function AboutAndLastPost({ title, id, updated_at, miniature }) {
+  const About = () => {
+    const [content, setContent] = useState("");
+    useEffect(() => {
+      getMarkdownPost("post/About.md").then((data) => setContent(data));
+    }, []);
+    return <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>;
+  };
   return (
     <section className="article-about-container">
       <section className="about-container">
-        {/* <About /> */}
+        <About />
       </section>
       <section className="article-container">
         <article className="article">
-          <img
-            src="https://images.pexels.com/photos/15857477/pexels-photo-15857477/free-photo-of-tunel-pavimento-interior-vacio.jpeg?auto=compress&cs=tinysrgb&w=400&lazy=load"
-            alt="imagen"
-          />
-          <h1>hola mundo</h1>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati
-            porro, fuga assumenda temporibus nisi velit suscipit amet iusto
-            doloremque cupiditate neque sed sint quaerat nam. Sint porro veniam
-            atque deserunt.
-          </p>
+          <Image src={loadImageFromSupabase(miniature)} alt="" height={400} width={400} />
+          <h1>{title}</h1>
           <div className="container-info">
-            <span>11 / 09 / 2023</span>
-            <Link href="#" className="button-link">
-              Go to the post!
+            <time dateTime={updated_at}>
+              {new Date(updated_at).toLocaleDateString()}
+            </time>
+            <Link href={`/posts/${id}`} className="button-link">
+              See the post
             </Link>
           </div>
         </article>

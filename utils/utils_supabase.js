@@ -8,9 +8,9 @@ import supabase from "./init_supabase";
  * @param {string} select
  * @returns query
  */
-export async function getSupabase(target, select) {
+export async function getSupabase(target, select, order_by = "updated_at") {
   try {
-    return await supabase.from(target).select(select);
+    return await supabase.from(target).select(select).order(order_by);
   } catch (error) {
     return error;
   }
@@ -18,12 +18,19 @@ export async function getSupabase(target, select) {
 
 /**
  * this function get a single post by its title
- * @param {string} title title
+ * @param {string} id title
  * @returns post
  */
-export async function getPostByTitleSupabase(title, select = "*") {
+export async function getPostByIDSupabase(
+  id,
+  select = `*, users!posts_owner_id_fkey( * ), category!posts_category_id_fkey(*)`
+) {
   try {
-    return await supabase.from("posts").select(select).eq("title", title).single();
+    return await supabase
+      .from("posts")
+      .select(select)
+      .eq("id", id)
+      .single();
   } catch (error) {
     return error;
   }

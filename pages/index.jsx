@@ -1,70 +1,61 @@
-import { Post_miniature } from "../components/post";
 import { getSupabase } from "../utils/utils_supabase";
 import Head from "next/head";
-import { useEffect, useState } from "react";
-import About from "../components/about";
+import AboutAndLastPost from "../components/about";
 import Slider from "../components/slider";
+import supabase from "../utils/init_supabase";
+
+// falta optimizar esta wea duran mucho cargando
 
 const data = [
   {
-    title: "lorem ipsum titulo",
-    description: "una description sencilla",
-    url: "https://imgur.com/LbBqmJ9",
+    url: "/img_1.jpg",
   },
   {
-    title: "lorem ipsum titulo2",
-    description: "una description sencilla",
-    url: "https://imgur.com/dM0QAEA",
+    url: "/img_2.jpg",
   },
   {
-    title: "lorem ipsum titulo3",
-    description: "una description sencilla",
-    url: "http:///localhost:3000/favicon.ico",
+    url: "/img_3.jpg",
   },
   {
-    title: "lorem ipsum titulo4",
-    description: "una description sencilla",
-    url: "https://images.pexels.com/photos/16159464/pexels-photo-16159464/free-photo-of-edificio-cielo-azul-urbano-pueblo.jpeg?auto=compress&cs=tinysrgb&w=400&lazy=load",
+    url: "/img_4.jpg",
   },
   {
-    title: "lorem ipsum titulo5",
-    description: "una description sencilla",
-    url: "https://images.pexels.com/photos/15109908/pexels-photo-15109908/free-photo-of-flores-insecto-mariposa-floracion.jpeg?auto=compress&cs=tinysrgb&w=400&lazy=load",
-  },
-  {
-    title: "lorem ipsum titulo6",
-    description: "una description sencilla",
-    url: "https://images.pexels.com/photos/15857477/pexels-photo-15857477/free-photo-of-tunel-pavimento-interior-vacio.jpeg?auto=compress&cs=tinysrgb&w=400&lazy=load",
+    url: "/img_5.jpg",
   },
 ];
 
-export default function Home() {
-  const [lastPost, setLastPost] = useState();
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    getSupabase("posts", "*")
-      .then((data) => {
-        setLastPost(data.data);
-        setIsLoading(false);
-      })
-      .catch((error) => console.error(error));
-  }, []);
-
+export default function Home({ post, error }) {
+  if (error) {
+    return (
+      <div
+        style={{ height: "100vh", display: "flex", justifyContent: "center", alignItems: "center", color: "black" }}
+      >
+        <h1>Pagina no disponible</h1>
+      </div>
+    );
+  }
   return (
     <>
       <Head>
         <title>Chukuto Planet</title>
       </Head>
-      {/* {isLoading ? (
-            <h1>Loading...</h1>
-          ) : (
-            lastPost.map(post => {
-              return <Post_miniature key={post.id} title={post.title} />;
-            })
-          )} */}
       <Slider data={data} />
-      <About />
+      <AboutAndLastPost
+        title={post.title}
+        id={post.id}
+        updated_at={post.updated_at}
+        miniature={post.miniature}
+      />
     </>
   );
+}
+
+export async function getServerSideProps() {
+  const { data: post, error } = await getSupabase("posts", "*");
+  return {
+    props: {
+      post: post[0],
+      error,
+    },
+  };
 }

@@ -7,12 +7,34 @@ import supabase from "./init_supabase";
  * @return metadata and content
  */
 export function getMetadataPost(post_content) {
-  const { data: metadata, content: content } = matter(post_content);
+  const { data: metadata, content } = matter(post_content);
   return { metadata, content };
 }
 
-export function getAllHomeWorkOf(name, last_name) {
-  const studentName = `${name.split(" ")[0]} ${last_name.split(" ")[0]}`;
+export async function getMarkdownPost(url_post) {
+  const { data: post_blob, error } = await supabase.storage
+    .from("blog_storage")
+    .download(url_post);
+  if (error) throw error;
+  let post_md = post_blob.text().then((post_md) => (post_md = post_md));
+  return post_md;
+}
+
+export function loadImageFromSupabase(src) {
+  let {
+    data: { publicUrl: url },
+  } = supabase.storage.from("blog_storage").getPublicUrl(`image/${src}`);
+  return url;
+}
+
+/**
+ *
+ * @param {string} first_name
+ * @param {string} last_name
+ * @returns all homeworks
+ */
+export function getAllHomeWorkOf(first_name, last_name) {
+  const studentName = `${first_name.split(" ")[0]} ${last_name.split(" ")[0]}`;
   const allWorkFromStorageWithPublicUrl = [];
 
   supabase.storage
@@ -35,4 +57,3 @@ export function getAllHomeWorkOf(name, last_name) {
     .catch((error) => console.error(error));
   return allWorkFromStorageWithPublicUrl;
 }
-

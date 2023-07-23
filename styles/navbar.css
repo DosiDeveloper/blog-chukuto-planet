@@ -5,12 +5,13 @@
   padding: 20px;
   position: sticky;
   top: 0;
+  overflow: hidden;
   background-color: transparent;
   transition: all 0.3s ease-in-out;
   z-index: 999;
   background: rgba(255, 255, 255, 0.122);
   box-shadow: 0 8px 32px 0 rgba(114, 114, 114, 0.37);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(20px);
 }
 
@@ -42,25 +43,50 @@
 .menu__item button {
   color: whitesmoke;
   text-decoration: none;
-  font-size: 20px;
+  font-size: 25px;
   font-weight: 600;
   transition: all 0.3s ease-in-out;
   box-sizing: border-box;
-  width: 100%;
+  width: auto;
+  height: auto;
   padding: 5px;
   padding: 1rem;
   border: none;
   border-radius: 4px;
-  background: rgba(184, 184, 184, 0.05);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(17.5px);
-  -webkit-backdrop-filter: blur(17.5px);
+  /* background: rgba(184, 184, 184, 0.05);
+  background-size: cover; */
+  /* box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(17.5px); 
+  -webkit-backdrop-filter: blur(17.5px); */
   border-radius: 10px;
 }
 
 .menu__item:hover a,
 .menu__item:hover button {
-  color: #0099ff;
+  color: #084887;
+  background: #D1D1D1;
+}
+
+.login-img img {
+  float: left;
+  height: 50px;
+}
+
+.hover-login-img img {
+  float: left;
+  height: 50px;
+  opacity: 0;
+  transition: opacity .1s;
+}
+
+.login-img:hover .hover-login-img {
+  opacity: 1;
+}
+
+.logout-img {
+  cursor: pointer;
+  float: left;
+  height: 50px;
 }
 
 .menu__container {
@@ -135,8 +161,12 @@
     z-index: 999;
   }
 
+  .menu {
+    gap: 0px;
+  }
+
   .menu.menu--invisible {
-    height: 0px;
+    height: 0vh;
     visibility: hidden;
     opacity: 0;
   }
@@ -146,14 +176,13 @@
     flex-direction: column;
     opacity: 1;
     visibility: visible;
-    height: 100%;
+    height: 100vh;
     width: 100%;
-    position: fixed;
+    position: absolute;
     z-index: 999;
     left: 0%;
-    top: 0;
-    background-color: rgb(0, 0, 0);
-    background-color: rgba(0, 0, 0, 0.9);
+    top: 0%;
+    background-color: rgba(0, 0, 0, 0.724);
     overflow-x: hidden;
     align-self: center;
     gap: 25px;
@@ -194,7 +223,7 @@
     z-index: 1000;
   }
   .nav-icon span {
-    background-color: #fff;
+    background-color: rgb(200, 200, 200);
     position: absolute;
     border-radius: 2px;
     transition: 0.3s cubic-bezier(0.8, 0.5, 0.2, 1.4);

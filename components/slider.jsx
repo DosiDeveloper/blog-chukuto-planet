@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 
 export default function Slider({ data: slides }) {
-  if (!slides) {
-    return <h1>Data not found</h1>;
-  }
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const goToPrevious = () => {
@@ -53,7 +50,9 @@ export default function Slider({ data: slides }) {
   const slideStylesWidthBackground = {
     backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${slides[currentIndex].url})`,
   };
-
+  if (!slides) {
+    return <h1>Data not found</h1>;
+  }
   return (
     <>
       <div className="slider-container">

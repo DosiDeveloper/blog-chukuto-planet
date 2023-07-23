@@ -1,0 +1,15 @@
+.post-list-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  margin: 5rem 0 5rem 0;
+}
+
+.post-list-container .post-list {
+  display: flex;
+  justify-self: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}

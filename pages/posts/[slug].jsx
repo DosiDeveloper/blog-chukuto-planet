@@ -1,22 +1,22 @@
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import { Post } from "../../components/post";
-import { getPostByTitleSupabase } from "../../utils/utils_supabase";
+import Post from "../../components/post";
+import supabase from "../../utils/init_supabase";
 
-export default function Posting() {
-  const router = useRouter();
-  const [post, setPost] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
-    getPostByTitleSupabase(
-      router.query.slug,
+export default function Posting({ post, error }) {
+  return <Post post={post} />;
+}
+
+export async function getServerSideProps({query}) {
+  const { data: post, error } = await supabase
+    .from("posts")
+    .select(
       `*, users!posts_owner_id_fkey( * ), category!posts_category_id_fkey(*)`
     )
-      .then((data) => {
-        setIsLoading(false);
-        setPost(data.data);
-      })
-      .catch((e) => console.error(e));
-  });
-  return <>{isLoading ? <h1>Loading...</h1> : <Post post={post} />}</>;
+    .eq("id", query.slug)
+    .single();
+  return {
+    props: {
+      post,
+      error,
+    },
+  };
 }

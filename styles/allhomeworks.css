@@ -1,19 +1,29 @@
 .container-all-works {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  margin-bottom: 1rem;
-  margin: 4rem;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 98vw;
+    margin-bottom: 1rem;
+    margin-top: 4rem;
+    justify-content: center;
+    align-items: center;
+    color: #0f0f0f;
 }
 
 .table-container {
   flex-grow: 1;
   overflow-y: scroll;
+  width: 100%;
+  /* padding: 1rem; */
 }
 
 .dropdown {
   height: 2rem;
   margin: 1rem;
+}
+
+.dropdown option {
+  height: 2rem;
 }
 
 .homework-iframe {
