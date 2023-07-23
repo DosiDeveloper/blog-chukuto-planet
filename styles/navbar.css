@@ -5,6 +5,7 @@
   padding: 20px;
   position: sticky;
   top: 0;
+  overflow: hidden;
   background-color: transparent;
   transition: all 0.3s ease-in-out;
   z-index: 999;
@@ -139,12 +140,12 @@
 
 @keyframes nav_open {
   0% {
-    height: 0vh;
+    height: 0%;
     opacity: 0;
     visibility: hidden;
   }
   100% {
-    height: 100vh;
+    height: 100%;
     opacity: 1;
     visibility: visible;
   }
@@ -165,7 +166,7 @@
   }
 
   .menu.menu--invisible {
-    height: 0px;
+    height: 0vh;
     visibility: hidden;
     opacity: 0;
   }
@@ -222,7 +223,7 @@
     z-index: 1000;
   }
   .nav-icon span {
-    background-color: #fff;
+    background-color: rgb(200, 200, 200);
     position: absolute;
     border-radius: 2px;
     transition: 0.3s cubic-bezier(0.8, 0.5, 0.2, 1.4);

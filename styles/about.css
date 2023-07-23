@@ -5,6 +5,7 @@
   align-items: center;
   margin: 5rem 0 5rem 0;
   gap: 3rem;
+  width: 100%;
 }
 
 .article-container {
@@ -12,9 +13,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 2rem 0 2rem 0;
-  width: 100%;
+  margin: 2rem 0 2rem 0;
   height: 100vh;
+  width: 100%;
 }
 
 .article {
@@ -22,14 +23,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 3rem;
-  margin-left: 14px;
-  margin-right: 14px;
+  padding: 1rem;
   border-radius: 20px;
-  max-width: 100vw;
-  height: 100vh;
   background: var(--color-azul);
   transition: box-shadow 0.2s ease;
+  height: 100vh;
+  width: 90%;
 }
 
 .article:hover {
@@ -46,6 +45,7 @@
 }
 
 .article img {
+  width: auto;
   height: 30%;
   margin: 0%;
 }
@@ -58,7 +58,7 @@
 .container-info {
   display: flex;
   height: 30px;
-  width: 100%;
+  width: 99%;
   margin: 10px 0px 10px 0;
   justify-content: space-between;
   align-items: center;

@@ -16,7 +16,7 @@ const data = [
   {
     url: "/img_3.jpg",
   },
-  { 
+  {
     url: "/img_4.jpg",
   },
   {
@@ -24,25 +24,39 @@ const data = [
   },
 ];
 
-export default function Home({post, error}) {
+export default function Home({ post, error }) {
+  if (error) {
+    return (
+      <div
+        style={{ height: "100vh", display: "flex", justifyContent: "center", alignItems: "center", color: "black" }}
+      >
+        <h1>Pagina no disponible</h1>
+      </div>
+    );
+  }
   return (
     <>
       <Head>
         <title>Chukuto Planet</title>
       </Head>
       <Slider data={data} />
-      <AboutAndLastPost title={post.title} id={post.id} update_at={post.updated_at}/>
+      <AboutAndLastPost
+        title={post.title}
+        id={post.id}
+        update_at={post.updated_at}
+        miniature={post.miniature}
+      />
     </>
   );
 }
 
 export async function getServerSideProps() {
-  const {data: post, error} = await supabase.from("posts").select("*").order("updated_at").single();
+  const { data: post, error } = await getSupabase("posts", "*");
   console.log(post, error);
   return {
     props: {
-      post, 
-      error
-    }
-  }
+      post: post[0],
+      error,
+    },
+  };
 }

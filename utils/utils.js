@@ -20,7 +20,7 @@ export async function getMarkdownPost(url_post) {
   return post_md;
 }
 
-export function loadImageMarkdown(src) {
+export function loadImageFromSupabase(src) {
   let {
     data: { publicUrl: url },
   } = supabase.storage.from("blog_storage").getPublicUrl(`image/${src}`);

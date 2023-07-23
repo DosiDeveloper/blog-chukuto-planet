@@ -3,10 +3,10 @@ import { useEffect } from "react";
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { getMarkdownPost } from "../utils/utils";
+import { getMarkdownPost, loadImageFromSupabase } from "../utils/utils";
 import Image from "next/image";
 
-export default function AboutAndLastPost({ title, id, update_at: updated_at }) {
+export default function AboutAndLastPost({ title, id, updated_at, miniature }) {
   const About = () => {
     const [content, setContent] = useState("");
     useEffect(() => {
@@ -14,7 +14,6 @@ export default function AboutAndLastPost({ title, id, update_at: updated_at }) {
     }, []);
     return <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>;
   };
-  console.log(updated_at);
   return (
     <section className="article-about-container">
       <section className="about-container">
@@ -22,7 +21,7 @@ export default function AboutAndLastPost({ title, id, update_at: updated_at }) {
       </section>
       <section className="article-container">
         <article className="article">
-          <Image src="/400x400.svg" alt="" height={400} width={400} />
+          <Image src={loadImageFromSupabase(miniature)} alt="" height={400} width={400} />
           <h1>{title}</h1>
           <div className="container-info">
             <time dateTime={updated_at}>

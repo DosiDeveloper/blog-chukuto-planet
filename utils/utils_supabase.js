@@ -8,9 +8,9 @@ import supabase from "./init_supabase";
  * @param {string} select
  * @returns query
  */
-export async function getSupabase(target, select) {
+export async function getSupabase(target, select, order_by = "updated_at") {
   try {
-    return await supabase.from(target).select(select);
+    return await supabase.from(target).select(select).order(order_by);
   } catch (error) {
     return error;
   }
