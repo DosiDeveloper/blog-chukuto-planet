@@ -43,7 +43,7 @@ export default function Home({ post, error }) {
       <AboutAndLastPost
         title={post.title}
         id={post.id}
-        update_at={post.updated_at}
+        updated_at={post.updated_at}
         miniature={post.miniature}
       />
     </>
@@ -52,7 +52,6 @@ export default function Home({ post, error }) {
 
 export async function getServerSideProps() {
   const { data: post, error } = await getSupabase("posts", "*");
-  console.log(post, error);
   return {
     props: {
       post: post[0],
