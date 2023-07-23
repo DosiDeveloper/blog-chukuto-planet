@@ -60,9 +60,9 @@ export default function Navbar() {
         )}
         <li>
           {!user ? (
-            <a href="/login" className="login-img">
+            <Link href="/login" className="login-img">
               <img src="/login-logo.png"/>
-            </a>
+            </Link>
           ) : (
             <div className="logout-img" onClick={handleSignOut}>
               <img src="/logout-logo.png"/>

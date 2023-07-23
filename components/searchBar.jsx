@@ -22,7 +22,7 @@ export default function SearchBar({ setResults, results }) {
         });
     }
     setResults([]);
-  }, [input]);
+  }, [input, setResults]);
 
   return (
     <div className="input-wrapper">
