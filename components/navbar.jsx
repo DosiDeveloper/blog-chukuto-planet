@@ -17,6 +17,7 @@ export default function Navbar() {
   // mrk el que lo lea
   const handleSignOut = async () => {
     await supabase.auth.signOut();
+    router.push("/")
   };
 
 

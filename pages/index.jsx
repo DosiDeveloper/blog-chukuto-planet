@@ -1,57 +1,48 @@
-import { Post_miniature } from "../components/post";
 import { getSupabase } from "../utils/utils_supabase";
 import Head from "next/head";
-import { useEffect, useState } from "react";
-import About from "../components/about";
+import AboutAndLastPost from "../components/about";
 import Slider from "../components/slider";
+import supabase from "../utils/init_supabase";
 
 // falta optimizar esta wea duran mucho cargando
 
 const data = [
   {
-    url: "http:///localhost:3000/img_1.jpg",
-  }
-  // {
-  //   url: "http:///localhost:3000/img_2.jpg",
-  // },
-  // {
-  //   url: "http:///localhost:3000/img_3.jpg",
-  // },
-  // { 
-  //   url: "http:///localhost:3000/img_4.jpg",
-  // },
-  // {
-  //   url: "http:///localhost:3000/img_5.jpg",
-  // },
+    url: "/img_1.jpg",
+  },
+  {
+    url: "/img_2.jpg",
+  },
+  {
+    url: "/img_3.jpg",
+  },
+  { 
+    url: "/img_4.jpg",
+  },
+  {
+    url: "/img_5.jpg",
+  },
 ];
 
-export default function Home() {
-  const [lastPost, setLastPost] = useState();
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    getSupabase("posts", "*")
-      .then((data) => {
-        setLastPost(data.data);
-        setIsLoading(false);
-      })
-      .catch((error) => console.error(error));
-  }, []);
-
+export default function Home({post, error}) {
   return (
     <>
       <Head>
         <title>Chukuto Planet</title>
       </Head>
-      {/* {isLoading ? (
-            <h1>Loading...</h1>
-          ) : (
-            lastPost.map(post => {
-              return <Post_miniature key={post.id} title={post.title} />;
-            })
-          )} */}
       <Slider data={data} />
-      <About />
+      <AboutAndLastPost title={post.title} id={post.id} update_at={post.updated_at}/>
     </>
   );
+}
+
+export async function getServerSideProps() {
+  const {data: post, error} = await supabase.from("posts").select("*").order("updated_at").single();
+  console.log(post, error);
+  return {
+    props: {
+      post, 
+      error
+    }
+  }
 }

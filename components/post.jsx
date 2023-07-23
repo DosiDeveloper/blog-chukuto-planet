@@ -3,7 +3,7 @@ import {
   getMetadataPost,
   loadImageMarkdown,
 } from "../utils/utils";
-import { useState, useEffect, } from "react";
+import { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Head from "next/head";
@@ -28,17 +28,17 @@ export default function Post({ post }) {
     }
   }, [post]);
 
-  if (isLoading) return (
-    <section className="loader-container">
-
-    <div className="lds-ring">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-    </section>
-  );
+  if (isLoading)
+    return (
+      <section className="loader-container">
+        <div className="lds-ring">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </section>
+    );
   return (
     <>
       <Head>
@@ -85,4 +85,4 @@ export default function Post({ post }) {
       </article>
     </>
   );
-};
+}

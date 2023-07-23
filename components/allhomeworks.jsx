@@ -30,15 +30,19 @@ export default function TableAllHomeWorks() {
         className="dropdown"
         onChange={(event) => {
           const selectedCedula = event.target.value;
-          const student = listHomework.find(
-            (student) => student.Cedula === Number(selectedCedula)
-          );
-          setSelectedStudent(student);
+          if (selectedCedula !== "nada"){
+            const student = listHomework.find(
+              (student) => student.Cedula === Number(selectedCedula)
+            );
+            setSelectedStudent(student);
+          }
         }}
       >
-        <option value="hola">Selecciona un estudiante</option>
+        <option value="nada">Select a student</option>
         {isLoadingList ? (
-          <option>loading ...</option>
+          <option>
+            Loading
+          </option>
         ) : (
           listHomework.map((student, index) => (
             <option key={index} value={student.Cedula}>
@@ -49,34 +53,41 @@ export default function TableAllHomeWorks() {
       </select>
       <div className="table-container">
         {isLoadingList ? (
-          <h1>...loading</h1>
+          <section className="loader-container">
+            <div className="lds-ring">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </section>
         ) : JSON.stringify(selectedStudent) !== JSON.stringify({}) ? (
           <>
-            <h1>Name and Last Name</h1>
             <div key={selectedStudent.Cedula}>
-              <h3>
+              <h1>
                 {selectedStudent.Nombres} {selectedStudent.Apellidos}
-              </h3>
+              </h1>
               {selectedStudent.homeworks.map((work) => {
-              return (
-                <div key={work.id}>
-                  <h3>{work.name}</h3>
-                  {work.publicURL && (
-                    <iframe
-                      src={work.publicURL}
-                      title={work.name}
-                      className="homework-iframe"
-                      width="auto"
-                      height="500px"
+                return (
+                  <div key={work.id}>
+                    <h3>{work.name}</h3>
+                    {work.publicURL && (
+                      <iframe
+                        src={work.publicURL}
+                        title={work.name}
+                        className="homework-iframe"
+                        width="auto"
+                        height="500px"
+                        loading="lazy"
                       ></iframe>
-                  )}
+                    )}
                   </div>
-                  );
-                })}
+                );
+              })}
             </div>
           </>
         ) : (
-          <h3>Seleccion un estudiante</h3>
+          <h3>Select a student</h3>
         )}
       </div>
     </div>
