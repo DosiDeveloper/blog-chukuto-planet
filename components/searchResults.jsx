@@ -1,9 +1,8 @@
-import PostList from "./postlist";
-export default function SearchResult({ result }) {
+export default function SearchResult({ result, id }) {
   return (
     <div
       className="search-result"
-      onClick={(e) => alert(`You selected ${result}!`)}
+      onClick={(_) => alert(`You selected ${result} ${id}!`)}
     >
       {result}
     </div>

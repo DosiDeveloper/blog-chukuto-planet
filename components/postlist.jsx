@@ -1,19 +1,14 @@
-import Link from "next/link";
+import PostMiniature from "./postMiniature";
 
 export default function PostList({ posts }) {
+  console.log(posts);
   return (
-    <div>
-      <h2>Lista de Posts:</h2>
-      <ul>
-        <li>all post</li>
+    <div className="post-list-container">
+      <section className="post-list">
         {posts.map((post) => (
-          <li key={post.id}>
-            <h3>{post.title}</h3>
-            <p>{post.description}</p>
-            <Link href={`/posts/${post.id}`}>Go to the post</Link>
-          </li>
+          <PostMiniature title={post.title} id={post.id} key={post.id} />
         ))}
-      </ul>
+      </section>
     </div>
   );
 }

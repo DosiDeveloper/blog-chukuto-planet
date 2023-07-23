@@ -5,8 +5,7 @@ export default function SearchResultsList({ results }) {
     <div className="results-list">
       {results.length > 0
         ? results.map((result, index) => {
-          console.log(result)
-            return <SearchResult result={result.title} key={index} />;
+            return <SearchResult result={result.title} id={result.id} key={index} />;
           })
         : <></>}
     </div>

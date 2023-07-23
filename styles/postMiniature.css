@@ -1,0 +1,24 @@
+.post-card-miniature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background-color: var(--color-gris-oscuro);
+  padding: 1rem;
+}
+
+.post-card-header {
+  text-align: center;
+}
+
+.post-card-miniature img {
+  border-radius: 20px;
+}
+
+.post-card-link {
+    background-color: rgb(0, 191, 0);
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+}

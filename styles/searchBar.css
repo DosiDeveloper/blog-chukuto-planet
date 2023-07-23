@@ -1,9 +1,9 @@
 .search-bar-container {
   display: flex;
+  margin-top: 5rem;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  height: 100vh;
 }
 
 .input-wrapper {

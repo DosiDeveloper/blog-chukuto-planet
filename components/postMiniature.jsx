@@ -1,17 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export function PostMiniature({ name }) {
+export default function PostMiniature({ title, id }) {
   return (
-    <article className="flex flex-col place-items-center justify-center content-center p-3 md:p-5 text-center bg-slate-800 rounded-2xl h-full w-full shadow-md">
-      <header className="flex flex-col bg-slate-500 w-full">
+    <article className="post-card-miniature">
+      <header className="post-card-header">
         <Image src="/400x400.svg" alt="" height={400} width={400} />
-        <h2 className="text-white">{name}</h2>
-        <br></br>
+        <h2 className="text-white">{title}</h2>
       </header>
       <Link
-        href={"/post/" + name}
-        className="rounded-md border-b-4 border-red-700"
+        href={`/posts/${id}`}
+        className="post-card-link"
       >
         See the post
       </Link>

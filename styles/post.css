@@ -1,0 +1,19 @@
+.post {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    margin: auto 0;
+}
+
+.post header h1 {
+    text-align: center;
+    text-transform: uppercase;
+}
+.post-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

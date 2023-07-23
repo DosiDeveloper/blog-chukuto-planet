@@ -18,12 +18,19 @@ export async function getSupabase(target, select) {
 
 /**
  * this function get a single post by its title
- * @param {string} title title
+ * @param {string} id title
  * @returns post
  */
-export async function getPostByTitleSupabase(title, select = "*") {
+export async function getPostByIDSupabase(
+  id,
+  select = `*, users!posts_owner_id_fkey( * ), category!posts_category_id_fkey(*)`
+) {
   try {
-    return await supabase.from("posts").select(select).eq("title", title).single();
+    return await supabase
+      .from("posts")
+      .select(select)
+      .eq("id", id)
+      .single();
   } catch (error) {
     return error;
   }
