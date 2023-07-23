@@ -48,10 +48,6 @@ export default function Login() {
       });
     };
   }, []);
-
-  supabase.auth.onAuthStateChange((event, session) => {
-    console.log(event, session);
-  });
   return (
     <>
       <Head>
@@ -98,15 +94,6 @@ export default function Login() {
             </div>
           </div>
           <input type="submit" className="btn" value="Login" />
-          {/* <input
-            type="submit"
-            value="Log out"
-            className="btn"
-            onClick={async () => {
-              await supabase.auth.signOut();
-              router?.refresh();
-            }}
-          /> */}
         </form>
       </div>
     </>
