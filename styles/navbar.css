@@ -2,10 +2,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
   position: sticky;
+  padding-top: 10px;
+  padding-bottom: 10px;
   top: 0;
-  overflow: hidden;
   background-color: transparent;
   transition: all 0.3s ease-in-out;
   z-index: 999;
@@ -28,7 +28,7 @@
 .menu {
   display: flex;
   justify-content: space-between;
-  gap: 50px;
+  gap: 20px;
   align-items: center;
   list-style: none;
   margin: 0;
@@ -177,7 +177,7 @@
     opacity: 1;
     visibility: visible;
     height: 100vh;
-    width: 100%;
+    width: 100vw;
     position: absolute;
     z-index: 999;
     left: 0%;

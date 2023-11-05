@@ -10,7 +10,7 @@ import supabase from "./init_supabase";
  */
 export async function getSupabase(target, select, order_by = "updated_at") {
   try {
-    return await supabase.from(target).select(select).order(order_by);
+    return await supabase.instance.from(target).select(select).order(order_by);
   } catch (error) {
     return error;
   }
@@ -26,7 +26,7 @@ export async function getPostByIDSupabase(
   select = `*, users!posts_owner_id_fkey( * ), category!posts_category_id_fkey(*)`
 ) {
   try {
-    return await supabase
+    return await supabase.instance
       .from("posts")
       .select(select)
       .eq("id", id)
@@ -44,7 +44,7 @@ export async function getPostByIDSupabase(
  */
 export async function getPostSupabase(post_url) {
   try {
-    return await supabase.storage.from("blog_storage").download(post_url);
+    return await supabase.instance.storage.from("blog_storage").download(post_url);
   } catch (error) {
     return error;
   }

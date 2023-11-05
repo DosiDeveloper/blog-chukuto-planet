@@ -1,7 +1,6 @@
 import PostMiniature from "./postMiniature";
 
 export default function PostList({ posts }) {
-  console.log(posts);
   return (
     <div className="post-list-container">
       <section className="post-list">

@@ -7,7 +7,7 @@ export default function TableAllHomeWorks() {
   const [isLoadingList, setIsLoadingList] = useState(true);
   const [selectedStudent, setSelectedStudent] = useState({});
   useEffect(() => {
-    supabase
+    supabase.instance
       .from("students")
       .select("Cedula,Nombres,Apellidos")
       .order("Nombres")

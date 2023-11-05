@@ -1,4 +1,4 @@
-import { createBrowserSupabaseClient } from "@supabase/auth-helpers-nextjs";
+import supabase from "../utils/init_supabase";
 import Head from "next/head";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -11,10 +11,9 @@ export default function Login() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const supabase = createBrowserSupabaseClient();
 
   const handleSignIn = async ({ email, password }) => {
-    await supabase.auth.signInWithPassword({
+    await supabase.instance.auth.signInWithPassword({
       email,
       password,
     });
