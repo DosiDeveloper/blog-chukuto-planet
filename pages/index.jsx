@@ -2,7 +2,6 @@ import { getSupabase } from "../utils/utils_supabase";
 import Head from "next/head";
 import AboutAndLastPost from "../components/about";
 import Slider from "../components/slider";
-import supabase from "../utils/init_supabase";
 
 // falta optimizar esta wea duran mucho cargando
 

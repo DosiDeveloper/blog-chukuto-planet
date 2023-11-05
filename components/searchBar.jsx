@@ -10,14 +10,15 @@ export default function SearchBar({ setResults, results }) {
 
   useEffect(() => {
     if (input !== "") {
-      supabase
+      supabase.instance
         .from("posts")
-        .select()
-        .textSearch("title", `%${input}%`, {
+        .select("*")
+        .textSearch("title", `*${input}*`, {
           type: "websearch",
           config: "english",
         })
         .then(({ data }) => {
+          console.log(input, data);
           setResults(data);
         });
     }

@@ -12,7 +12,7 @@ export function getMetadataPost(post_content) {
 }
 
 export async function getMarkdownPost(url_post) {
-  const { data: post_blob, error } = await supabase.storage
+  const { data: post_blob, error } = await supabase.instance.storage
     .from("blog_storage")
     .download(url_post);
   if (error) throw error;
@@ -23,7 +23,7 @@ export async function getMarkdownPost(url_post) {
 export function loadImageFromSupabase(src) {
   let {
     data: { publicUrl: url },
-  } = supabase.storage.from("blog_storage").getPublicUrl(`image/${src}`);
+  } = supabase.instance.storage.from("blog_storage").getPublicUrl(`image/${src}`);
   return url;
 }
 
@@ -37,14 +37,14 @@ export function getAllHomeWorkOf(first_name, last_name) {
   const studentName = `${first_name.split(" ")[0]} ${last_name.split(" ")[0]}`;
   const allWorkFromStorageWithPublicUrl = [];
 
-  supabase.storage
+  supabase.instance.storage
     .from("blog_storage")
     .list(`task_english/${studentName}`)
     .then(({ data: allWorkFromStorage, error }) => {
       if (error) return error;
 
       allWorkFromStorage.map((items) => {
-        const { data: publicURL } = supabase.storage
+        const { data: publicURL } = supabase.instance.storage
           .from("blog_storage")
           .getPublicUrl(`task_english/${studentName}/${items.name}`);
 

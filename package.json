@@ -1,6 +1,6 @@
 {
   "name": "proyecto-blog",
-  "version": "0.1.0",
+  "version": "1.0.5",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -13,11 +13,11 @@
     "@supabase/auth-helpers-react": "^0.4.1",
     "@supabase/supabase-js": "^2.22.0",
     "gray-matter": "4.0.3",
-    "next": "13.0.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "next": "^13.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-hook-form": "^7.45.1",
-    "react-markdown": "8.0.7",
+    "react-markdown": "^8.0.7",
     "rehype-react": "^7.2.0",
     "remark-gfm": "^3.0.1",
     "styled-components": "^5.3.10"
